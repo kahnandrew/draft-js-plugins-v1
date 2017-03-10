@@ -94,6 +94,7 @@ class PluginEditor extends Component {
     if (readOnly !== this.state.readOnly) this.setState({ readOnly });
   };
 
+  getEditorRef = () => this.editor;
   getEditorState = () => this.props.editorState;
   getPluginMethods = () => ({
     getPlugins: this.getPlugins,
@@ -102,6 +103,7 @@ class PluginEditor extends Component {
     getEditorState: this.getEditorState,
     getReadOnly: this.getReadOnly,
     setReadOnly: this.setReadOnly,
+    getEditorRef: this.getEditorRef,
   });
 
   createEventHooks = (methodName, plugins) => (...args) => {
@@ -268,7 +270,7 @@ class PluginEditor extends Component {
         customStyleMap={ customStyleMap }
         onChange={ this.onChange }
         editorState={ this.props.editorState }
-        ref="editor"
+        ref={(element) => { this.editor = element; }}
       />
     );
   }
